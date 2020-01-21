@@ -177,7 +177,7 @@ public final class KeyboardBuilder {
 
         public InlineKeyboardMarkup build() {
             row();
-            return new InlineKeyboardMarkup().setKeyboard(keyboard);
+            return new InlineKeyboardMarkup(keyboard);
         }
     }
 
@@ -204,7 +204,7 @@ public final class KeyboardBuilder {
 
         public ReplyKeyboardMarkup build() {
             row();
-            return new ReplyKeyboardMarkup().setKeyboard(keyboard);
+            return new ReplyKeyboardMarkup(keyboard);
         }
     }
 }

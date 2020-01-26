@@ -1,6 +1,8 @@
 package dev.robinsyl.telegram.keyboard;
 
 import org.junit.jupiter.api.Test;
+import org.telegram.telegrambots.meta.api.objects.LoginUrl;
+import org.telegram.telegrambots.meta.api.objects.games.CallbackGame;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -78,10 +80,10 @@ class InlineKeyboardBuilderTest {
         // Waiting for LoginUrl and CallbackGame to implement equals()
         List<InlineKeyboardButton> row = new ArrayList<>(6);
         row.add(new InlineKeyboardButton("pay").setPay(true));
-        //row.add(new InlineKeyboardButton("loginUrl").setLoginUrl(new LoginUrl("https://example.com")));
-        //row.add(new InlineKeyboardButton("callbackGame").setCallbackGame(new CallbackGame()));
-        //row.add(new InlineKeyboardButton("login").setLoginUrl(new LoginUrl("https://example.com")));
-        //row.add(new InlineKeyboardButton("game").setCallbackGame(new CallbackGame()));
+        row.add(new InlineKeyboardButton("loginUrl").setLoginUrl(new LoginUrl("https://example.com")));
+        row.add(new InlineKeyboardButton("callbackGame").setCallbackGame(new CallbackGame()));
+        row.add(new InlineKeyboardButton("login").setLoginUrl(new LoginUrl("https://example.com")));
+        row.add(new InlineKeyboardButton("game").setCallbackGame(new CallbackGame()));
         row.add(new InlineKeyboardButton("url").setUrl("https://example.com"));
         row.add(new InlineKeyboardButton("switchInline").setSwitchInlineQuery("switchInlineQuery"));
         row.add(new InlineKeyboardButton("switchInlineCurrent").setSwitchInlineQueryCurrentChat("switchInlineQueryCurrent"));
@@ -89,10 +91,10 @@ class InlineKeyboardBuilderTest {
 
         InlineKeyboardMarkup keyboardMarkup = KeyboardBuilder.inline()
                 .button("pay", true)
-                //.button("loginUrl", new LoginUrl("https://example.com"))
-                //.button("callbackGame", new CallbackGame())
-                //.buttonLogin("login", "https://example.com")
-                //.buttonGame("game")
+                .button("loginUrl", new LoginUrl("https://example.com"))
+                .button("callbackGame", new CallbackGame())
+                .buttonLogin("login", "https://example.com")
+                .buttonGame("game")
                 .buttonUrl("url", "https://example.com")
                 .buttonSwitch("switchInline", "switchInlineQuery")
                 .buttonSwitchCurrent("switchInlineCurrent", "switchInlineQueryCurrent")

@@ -16,7 +16,7 @@ class ReplyKeyboardBuilderTest {
     void testCreateReplyKeyboard() {
         KeyboardRow row = new KeyboardRow();
         row.add("hello");
-        ReplyKeyboardMarkup keyboard = new ReplyKeyboardMarkup().setKeyboard(Collections.singletonList(row));
+        ReplyKeyboardMarkup keyboard = new ReplyKeyboardMarkup(Collections.singletonList(row));
 
         ReplyKeyboardMarkup keyboardMarkup = KeyboardBuilder.reply()
                 .button("hello")
@@ -28,7 +28,7 @@ class ReplyKeyboardBuilderTest {
     void testCreateReplyKeyboardWithEmptyRow() {
         KeyboardRow row = new KeyboardRow();
         row.add("hello");
-        ReplyKeyboardMarkup keyboard = new ReplyKeyboardMarkup().setKeyboard(Collections.singletonList(row));
+        ReplyKeyboardMarkup keyboard = new ReplyKeyboardMarkup(Collections.singletonList(row));
 
         ReplyKeyboardMarkup keyboardMarkup = KeyboardBuilder.reply()
                 .button("hello")
@@ -42,7 +42,7 @@ class ReplyKeyboardBuilderTest {
         KeyboardRow row = new KeyboardRow();
         row.add("text1");
         row.add("text2");
-        ReplyKeyboardMarkup horizontalKeyboard = new ReplyKeyboardMarkup().setKeyboard(Collections.singletonList(row));
+        ReplyKeyboardMarkup horizontalKeyboard = new ReplyKeyboardMarkup(Collections.singletonList(row));
 
         ReplyKeyboardMarkup keyboardMarkup = KeyboardBuilder.ofReply("text1", "text2");
 
@@ -61,7 +61,7 @@ class ReplyKeyboardBuilderTest {
         keyboardList.add(row1);
         keyboardList.add(row2);
         keyboardList.add(row3);
-        ReplyKeyboardMarkup verticalKeyboard = new ReplyKeyboardMarkup().setKeyboard(keyboardList);
+        ReplyKeyboardMarkup verticalKeyboard = new ReplyKeyboardMarkup(keyboardList);
 
         ReplyKeyboardMarkup keyboardMarkup = KeyboardBuilder.ofReply(1, "text1", "text2", "text3");
 

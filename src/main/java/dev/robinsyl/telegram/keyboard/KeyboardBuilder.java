@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public final class KeyboardBuilder {
 
     private KeyboardBuilder() {
@@ -42,7 +43,7 @@ public final class KeyboardBuilder {
      * @return An {@link InlineKeyboardButton} containing text and callback data
      */
     public static InlineKeyboardButton button(String text, String callbackData) {
-        return new InlineKeyboardButton(text).setCallbackData(callbackData);
+        return InlineKeyboardButton.builder().text(text).callbackData(callbackData).build();
     }
 
     /**
@@ -123,47 +124,47 @@ public final class KeyboardBuilder {
         }
 
         public InlineKeyboardBuilder button(String text, String callbackData) {
-            row.add(new InlineKeyboardButton(text).setCallbackData(callbackData));
+            row.add(InlineKeyboardButton.builder().text(text).callbackData(callbackData).build());
             return this;
         }
 
         public InlineKeyboardBuilder buttonLogin(String text, String loginUrl) {
-            row.add(new InlineKeyboardButton(text).setLoginUrl(new LoginUrl(loginUrl)));
+            row.add(InlineKeyboardButton.builder().text(text).loginUrl(new LoginUrl(loginUrl)).build());
             return this;
         }
 
         public InlineKeyboardBuilder buttonGame(String text) {
-            row.add(new InlineKeyboardButton(text).setCallbackGame(new CallbackGame()));
+            row.add(InlineKeyboardButton.builder().text(text).callbackGame(new CallbackGame()).build());
             return this;
         }
 
         public InlineKeyboardBuilder buttonUrl(String text, String url) {
-            row.add(new InlineKeyboardButton(text).setUrl(url));
+            row.add(InlineKeyboardButton.builder().text(text).url(url).build());
             return this;
         }
 
         public InlineKeyboardBuilder buttonSwitch(String text, String switchInlineQuery) {
-            row.add(new InlineKeyboardButton(text).setSwitchInlineQuery(switchInlineQuery));
+            row.add(InlineKeyboardButton.builder().text(text).switchInlineQuery(switchInlineQuery).build());
             return this;
         }
 
         public InlineKeyboardBuilder buttonSwitchCurrent(String text, String switchInlineQueryCurrentChat) {
-            row.add(new InlineKeyboardButton(text).setSwitchInlineQueryCurrentChat(switchInlineQueryCurrentChat));
+            row.add(InlineKeyboardButton.builder().text(text).switchInlineQueryCurrentChat(switchInlineQueryCurrentChat).build());
             return this;
         }
 
         public InlineKeyboardBuilder button(String text, CallbackGame callbackGame) {
-            row.add(new InlineKeyboardButton(text).setCallbackGame(callbackGame));
+            row.add(InlineKeyboardButton.builder().text(text).callbackGame(callbackGame).build());
             return this;
         }
 
         public InlineKeyboardBuilder button(String text, LoginUrl loginUrl) {
-            row.add(new InlineKeyboardButton(text).setLoginUrl(loginUrl));
+            row.add(InlineKeyboardButton.builder().text(text).loginUrl(loginUrl).build());
             return this;
         }
 
         public InlineKeyboardBuilder button(String text, boolean pay) {
-            row.add(new InlineKeyboardButton(text).setPay(pay));
+            row.add(InlineKeyboardButton.builder().text(text).pay(pay).build());
             return this;
         }
 

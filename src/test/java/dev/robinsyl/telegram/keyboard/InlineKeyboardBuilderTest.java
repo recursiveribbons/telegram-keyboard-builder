@@ -18,9 +18,9 @@ class InlineKeyboardBuilderTest {
     void testCreateInlineKeyboard() {
         List<List<InlineKeyboardButton>> keyboardList = Collections.singletonList(
                 Collections.singletonList(
-                        new InlineKeyboardButton("hello").setCallbackData("world"))
+                        InlineKeyboardButton.builder().text("hello").callbackData("world").build())
         );
-        InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup().setKeyboard(keyboardList);
+        InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup(keyboardList);
 
         InlineKeyboardMarkup keyboardMarkup = KeyboardBuilder.inline()
                 .button("hello", "world")
@@ -32,9 +32,9 @@ class InlineKeyboardBuilderTest {
     void testCreateInlineKeyboardWithEmptyRow() {
         List<List<InlineKeyboardButton>> keyboardList = Collections.singletonList(
                 Collections.singletonList(
-                        new InlineKeyboardButton("hello").setCallbackData("world"))
+                        InlineKeyboardButton.builder().text("hello").callbackData("world").build())
         );
-        InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup().setKeyboard(keyboardList);
+        InlineKeyboardMarkup keyboard = new InlineKeyboardMarkup(keyboardList);
 
         InlineKeyboardMarkup keyboardMarkup = KeyboardBuilder.inline()
                 .button("hello", "world")
@@ -46,9 +46,9 @@ class InlineKeyboardBuilderTest {
     @Test
     void testCreateInlineKeyboardStaticDefault() {
         List<InlineKeyboardButton> row = new ArrayList<>(2);
-        row.add(new InlineKeyboardButton("text1").setCallbackData("callback1"));
-        row.add(new InlineKeyboardButton("text2").setCallbackData("callback2"));
-        InlineKeyboardMarkup horizontalKeyboard = new InlineKeyboardMarkup().setKeyboard(Collections.singletonList(row));
+        row.add(InlineKeyboardButton.builder().text("text1").callbackData("callback1").build());
+        row.add(InlineKeyboardButton.builder().text("text2").callbackData("callback2").build());
+        InlineKeyboardMarkup horizontalKeyboard = new InlineKeyboardMarkup(Collections.singletonList(row));
 
         InlineKeyboardMarkup keyboardMarkup = KeyboardBuilder.ofInline(
                 KeyboardBuilder.button("text1", "callback1"),
@@ -61,10 +61,10 @@ class InlineKeyboardBuilderTest {
     @Test
     void testCreateInlineKeyboardStatic() {
         List<List<InlineKeyboardButton>> keyboardList = new ArrayList<>(3);
-        keyboardList.add(Collections.singletonList(new InlineKeyboardButton("text1").setCallbackData("callback1")));
-        keyboardList.add(Collections.singletonList(new InlineKeyboardButton("text2").setCallbackData("callback2")));
-        keyboardList.add(Collections.singletonList(new InlineKeyboardButton("text3").setCallbackData("callback3")));
-        InlineKeyboardMarkup verticalKeyboard = new InlineKeyboardMarkup().setKeyboard(keyboardList);
+        keyboardList.add(Collections.singletonList(InlineKeyboardButton.builder().text("text1").callbackData("callback1").build()));
+        keyboardList.add(Collections.singletonList(InlineKeyboardButton.builder().text("text2").callbackData("callback2").build()));
+        keyboardList.add(Collections.singletonList(InlineKeyboardButton.builder().text("text3").callbackData("callback3").build()));
+        InlineKeyboardMarkup verticalKeyboard = new InlineKeyboardMarkup(keyboardList);
 
         InlineKeyboardMarkup keyboardMarkup = KeyboardBuilder.ofInline(1,
                 KeyboardBuilder.button("text1", "callback1"),
@@ -79,15 +79,15 @@ class InlineKeyboardBuilderTest {
     void testCreateInlineKeyboardVariety() {
         // Waiting for LoginUrl and CallbackGame to implement equals()
         List<InlineKeyboardButton> row = new ArrayList<>(6);
-        row.add(new InlineKeyboardButton("pay").setPay(true));
-        row.add(new InlineKeyboardButton("loginUrl").setLoginUrl(new LoginUrl("https://example.com")));
-        row.add(new InlineKeyboardButton("callbackGame").setCallbackGame(new CallbackGame()));
-        row.add(new InlineKeyboardButton("login").setLoginUrl(new LoginUrl("https://example.com")));
-        row.add(new InlineKeyboardButton("game").setCallbackGame(new CallbackGame()));
-        row.add(new InlineKeyboardButton("url").setUrl("https://example.com"));
-        row.add(new InlineKeyboardButton("switchInline").setSwitchInlineQuery("switchInlineQuery"));
-        row.add(new InlineKeyboardButton("switchInlineCurrent").setSwitchInlineQueryCurrentChat("switchInlineQueryCurrent"));
-        InlineKeyboardMarkup varietyKeyboard = new InlineKeyboardMarkup().setKeyboard(Collections.singletonList(row));
+        row.add(InlineKeyboardButton.builder().text("pay").pay(true).build());
+        row.add(InlineKeyboardButton.builder().text("loginUrl").loginUrl(new LoginUrl("https://example.com")).build());
+        row.add(InlineKeyboardButton.builder().text("callbackGame").callbackGame(new CallbackGame()).build());
+        row.add(InlineKeyboardButton.builder().text("login").loginUrl(new LoginUrl("https://example.com")).build());
+        row.add(InlineKeyboardButton.builder().text("game").callbackGame(new CallbackGame()).build());
+        row.add(InlineKeyboardButton.builder().text("url").url("https://example.com").build());
+        row.add(InlineKeyboardButton.builder().text("switchInline").switchInlineQuery("switchInlineQuery").build());
+        row.add(InlineKeyboardButton.builder().text("switchInlineCurrent").switchInlineQueryCurrentChat("switchInlineQueryCurrent").build());
+        InlineKeyboardMarkup varietyKeyboard = new InlineKeyboardMarkup(Collections.singletonList(row));
 
         InlineKeyboardMarkup keyboardMarkup = KeyboardBuilder.inline()
                 .button("pay", true)
@@ -105,7 +105,7 @@ class InlineKeyboardBuilderTest {
 
     @Test
     void inlineButton() {
-        InlineKeyboardButton exampleButton = new InlineKeyboardButton("hello").setCallbackData("world");
+        InlineKeyboardButton exampleButton = InlineKeyboardButton.builder().text("hello").callbackData("world").build();
         InlineKeyboardButton testButton = KeyboardBuilder.button("hello", "world");
         assertEquals(exampleButton, testButton);
     }

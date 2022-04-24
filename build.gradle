@@ -4,8 +4,7 @@ plugins {
 
 group 'dev.robinsyl'
 version '1.0'
-
-sourceCompatibility = 1.8
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
@@ -16,7 +15,7 @@ test {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
-    implementation("org.telegram:telegrambots-meta:5.0.1")
+    implementation 'org.telegram:telegrambots-meta:6.0.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
